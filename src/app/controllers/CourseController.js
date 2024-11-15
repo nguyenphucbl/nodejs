@@ -25,6 +25,17 @@ class CourseController {
       .then(() => res.redirect('/'))
       .catch(error => {});
   }
+  // NOTE [GET] /courses/:id/edit
+  async edit(req, res, next) {
+    const course = await CourseModel.findById(req.params.id).lean();
+    res.render('courses/edit', { course });
+  }
+  //NOTE [PUT] /courses/:id
+  update(req, res, next) {
+    CourseModel.updateOne({ _id: req.params.id }, req.body)
+      .then(() => res.redirect('/me/stored/courses'))
+      .catch(next);
+  }
 }
 
 export default new CourseController();

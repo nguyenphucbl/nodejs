@@ -1,26 +1,39 @@
 <div class='row mt-4'>
   <h3 class='text-center'>
-    Create a new course
+    Edit a course
   </h3>
   <div class='col-lg-4 offset-lg-4 col-12'>
-    <form method='post' action='/courses/store'>
+    <form method='post' action='/courses/{{course._id}}?_method=PUT'>
       <div class='mb-2'>
         <label for='name' class='form-label'>Tên Khoá Học</label>
-        <input type='text' class='form-control' id='name' name='name' />
+        <input
+          type='text'
+          class='form-control'
+          id='name'
+          name='name'
+          value='{{course.name}}'
+        />
 
       </div>
       <div class='mb-2'>
         <label for='description' class='form-label'>Mô tả khoá học</label>
-        <input
+        <textarea
           type='text'
           class='form-control'
           id='description'
           name='description'
-        />
+        > {{course.description}}</textarea>
       </div>
       <div class='mb-2'>
         <label for='videoId' class='form-label'>video Id</label>
-        <input type='text' class='form-control' id='videoId' name='videoId' />
+        <input
+          type='text'
+          class='form-control'
+          id='videoId'
+          name='videoId'
+          value='{{course.videoId}}'
+        />
+
       </div>
       <select
         name='level'
@@ -31,8 +44,7 @@
         <option value='medium' selected>Trung Bình</option>
         <option value='hard'>Khó</option>
       </select>
-      <button type='submit' class='btn btn-primary'>Thêm khoá học</button>
+      <button type='submit' class='btn btn-primary'>Sửa Khoá Học</button>
     </form>
   </div>
-  <button type='submit' class='btn btn-primary'>Submit</button>
-</form>
+</div>

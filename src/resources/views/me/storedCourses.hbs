@@ -1,0 +1,31 @@
+<div class='row mt-4'>
+  <h3 class='text-center'>Khoá học của tôi</h3>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th scope='col'>#</th>
+        <th scope='col'>Tên Khoá Học</th>
+        <th scope='col'>Trình Độ</th>
+        <th scope='col' colspan='2'>Thời Gian Tạo</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {{#each courses}}
+        <tr>
+          <th scope='row'>{{increment @index}}</th>
+
+          <td>{{this.name}}</td>
+          <td>{{this.level}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>
+            <a href='/courses/{{this._id}}/edit' class='btn btn-primary'>Sửa</a>
+          </td>
+          <td>
+            <a href='/courses/{{this_id}}' class='btn btn-danger'>Xoá</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

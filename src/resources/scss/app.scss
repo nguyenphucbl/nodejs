@@ -13,3 +13,23 @@ a {
 .card-item {
   margin-top: 20px;
 }
+
+.dropdown-menu.user-profile {
+  right: 0;
+  top: 100%;
+  left: unset;
+
+}
+
+.image-user {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+}
