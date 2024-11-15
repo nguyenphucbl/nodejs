@@ -1,0 +1,37 @@
+<div class='row mt-4'>
+  <h3 class='text-center'>
+    Create a new course
+  </h3>
+  <div class='col-lg-4 offset-lg-4 col-12'>
+    <form method='post' action='/courses/store'>
+      <div class='mb-2'>
+        <label for='name' class='form-label'>Tên Khoá Học</label>
+        <input type='text' class='form-control' id='name' name='name' />
+
+      </div>
+      <div class='mb-2'>
+        <label for='description' class='form-label'>Mô tả khoá học</label>
+        <input
+          type='text'
+          class='form-control'
+          id='description'
+          name='description'
+        />
+      </div>
+      <div class='mb-2'>
+        <label for='videoId' class='form-label'>video Id</label>
+        <input type='text' class='form-control' id='videoId' name='videoId' />
+      </div>
+      <select
+        name='level'
+        class='form-select my-4'
+        aria-label='Default select example'
+      >
+        <option value='easy'>Dễ</option>
+        <option value='medium' selected>Trung Bình</option>
+        <option value='hard'>Khó</option>
+      </select>
+      <button type='submit' class='btn btn-primary'>Thêm khoá học</button>
+    </form>
+  </div>
+</div>
