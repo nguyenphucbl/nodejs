@@ -17,7 +17,7 @@
   <option value="" >-- select action --</option>
   <option value="delete">delete</option>
 </select>
-  <button class="btn btn-primary disabled btn-submit-action">Apply</button>
+  <button class="btn btn-primary btn-submit-action" disabled>Apply</button>
 
   </div>
   <table class='table table-striped'>
@@ -90,7 +90,7 @@
   document.addEventListener('DOMContentLoaded',function(){
     // when modal show
     let courseId ='';
-    const containerForm = document.forms['container-form'];
+    const containerForm = $('form[name="container-form"]')
     const deleteForm = document.forms['delete-form'];
     const courseModal = document.getElementById('delete-course-modal');
     const checkboxAll = $('#checkbox-all')
@@ -102,13 +102,7 @@
 
   })
   //check all submit button disabled
-
-    btnSubmitAction.on('submit',function(e){
-      const isSubmittable = !$(this).hasClass('disabled')
-      if(!isSubmittable){
-        e.preventDefault()
-      }
-    })
+ 
   // when click delete
     const btnDeleteCourse = document.getElementById('btn-delete-course');
     btnDeleteCourse.addEventListener('click', function(){
@@ -134,7 +128,7 @@
     function renderCheckAllButton(){
       const checkedCount = courseItemCheckbox.filter(':checked').length
       const isDisabled = checkedCount === 0
-      btnSubmitAction.toggleClass('disabled',isDisabled)
+      btnSubmitAction.prop('disabled',isDisabled)
     }
   })
    
