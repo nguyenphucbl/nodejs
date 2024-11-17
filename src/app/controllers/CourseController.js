@@ -55,9 +55,20 @@ class CourseController {
   }
   // NOTE [POST] /courses/handle-form-action
   handleFormAction(req, res, next) {
+    const coursesIds = req.body.coursesIds;
     switch (req.body.action) {
       case 'delete':
-        CourseModel.delete({ _id: { $in: req.body.coursesIds } })
+        CourseModel.delete({ _id: { $in: coursesIds } })
+          .then(() => res.redirect('back'))
+          .catch(next);
+        break;
+      case 'restore':
+        CourseModel.restore({ _id: { $in: coursesIds } })
+          .then(() => res.redirect('back'))
+          .catch(next);
+        break;
+      case 'deleteForce':
+        CourseModel.deleteOne({ _id: { $in: coursesIds } })
           .then(() => res.redirect('back'))
           .catch(next);
 
