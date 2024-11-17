@@ -33,3 +33,15 @@ a {
   display: flex;
   align-items: center;
 }
+
+.check-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .form-select {
+    flex: 1;
+    margin: 0 10px;
+
+  }
+}
