@@ -13,6 +13,13 @@ class MeController {
   storedNews(req, res) {
     res.render('me/storedNews');
   }
+  //NOTE [GET] /me/trash/courses
+  trashCourses(req, res, next) {
+    CourseModel.findDeleted({ deletedAt: { $ne: null } })
+      .lean()
+      .then(courses => res.render('me/trashCourses', { courses }))
+      .catch(next);
+  }
 }
 
 export default new MeController();

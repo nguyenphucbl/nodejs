@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 import slug from 'mongoose-slug-updater';
-mongoose.plugin(slug);
+import mongooseDelete from 'mongoose-delete';
 // const ObjectId = Schema.ObjectId;
 const Course = new Schema(
   {
@@ -17,5 +17,10 @@ const Course = new Schema(
     timestamps: true,
   },
 );
+
+// NOTE: Add plugin
+
+mongoose.plugin(slug);
+Course.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
 const CourseModel = mongoose.model('Course', Course);
 export default CourseModel;
