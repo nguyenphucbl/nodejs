@@ -11,7 +11,7 @@
         <th scope='col'>#</th>
         <th scope='col'>Tên Khoá Học</th>
         <th scope='col'>Trình Độ</th>
-        <th scope='col' colspan='2'>Thời Gian Tạo</th>
+        <th scope='col' colspan='2'>Thời Gian Xoá</th>
 
       </tr>
     </thead>
@@ -22,7 +22,7 @@
 
         <td>{{this.name}}</td>
         <td>{{this.level}}</td>
-        <td>{{this.createdAt}}</td>
+        <td>{{this.deletedAt}}</td>
         <td>
           <a href='' class='btn btn-primary btn-restore' data-id="{{this._id}}">Khôi phục</a>
         </td>

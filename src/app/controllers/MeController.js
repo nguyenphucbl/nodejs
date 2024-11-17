@@ -4,10 +4,12 @@ class MeController {
   //NOTE [GET] /me/stored/courses
   storedCourses(req, res, next) {
     // res.render('me/storedCourses');
-    CourseModel.find({})
-      .lean()
-      .then(courses => res.render('me/storedCourses', { courses }))
-      .catch(next);
+    Promise.all([
+      CourseModel.find({}).lean(),
+      CourseModel.countDocumentsDeleted({ deletedAt: { $ne: null } }),
+    ]).then(([courses, deletedCount]) => {
+      res.render('me/storedCourses', { courses, deletedCount });
+    });
   }
   //NOTE [GET] /me/stored/news
   storedNews(req, res) {
