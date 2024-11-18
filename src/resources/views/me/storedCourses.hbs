@@ -27,11 +27,19 @@
           select
         </th>
         <th scope='col'>#</th>
-        <th scope='col'>Tên Khoá Học</th>
-        <th scope='col'>Trình Độ</th>
-        <th scope='col' colspan='2'>Thời Gian Tạo</th>
+        <th scope='col'>
+          Tên Khoá Học
+          {{{sortable 'name' _sort}}}
+        </th>
+        <th scope='col'>Trình Độ
+          {{{sortable 'level' _sort}}}
+        </th>
+        <th scope='col' colspan='2'>Thời Gian Tạo
+          {{{sortable 'createdAt' _sort}}}
+        </th>
 
       </tr>
+    
     </thead>
     <tbody>
       {{#each courses}}

@@ -4,6 +4,7 @@ import methodOverride from 'method-override';
 import morgan from 'morgan';
 import * as db from './config/db/index.js';
 import route from './routes/index.js';
+import { sortMiddleware } from './app/middlewares/SortMiddleware.js';
 const app = express();
 const port = 3000;
 app.use(methodOverride('_method'));
@@ -17,6 +18,22 @@ app.engine(
     extname: '.hbs',
     helpers: {
       increment: value => value + 1,
+      sortable: (field, sort) => {
+        const sortType = field === sort.column ? sort.type : 'default';
+        const icons = {
+          default: 'fa-sort',
+          asc: 'fa-sort-up',
+          desc: 'fa-sort-down',
+        };
+        const types = {
+          default: 'asc',
+          asc: 'desc',
+          desc: 'asc',
+        };
+        const type = types[sortType];
+        const icon = icons[sortType];
+        return `<a href="?_sort&column=${field}&type=${type}"><i class="fa-solid ${icon}"></i></a>`;
+      },
     },
   }),
 );
@@ -28,6 +45,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('combined'));
 
+app.use(sortMiddleware);
 // NOTE route init
 route(app);
 

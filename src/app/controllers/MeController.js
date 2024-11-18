@@ -3,9 +3,15 @@ import CourseModel from '../models/Course.js';
 class MeController {
   //NOTE [GET] /me/stored/courses
   storedCourses(req, res, next) {
-    // res.render('me/storedCourses');
+    let courseQuery = CourseModel.find({}).lean();
+
+    if (req.query.hasOwnProperty('_sort')) {
+      courseQuery = courseQuery.sort({
+        [req.query.column]: req.query.type,
+      });
+    }
     Promise.all([
-      CourseModel.find({}).lean(),
+      courseQuery,
       CourseModel.countDocumentsDeleted({ deletedAt: { $ne: null } }),
     ]).then(([courses, deletedCount]) => {
       res.render('me/storedCourses', { courses, deletedCount });
